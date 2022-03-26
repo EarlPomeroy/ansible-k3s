@@ -1,0 +1,33 @@
+---
+- hosts:
+    - rp3
+    - rp4
+    - infrastructure
+    - ns
+  tags: all
+  roles:
+    - common
+
+- hosts:
+    - rp3
+  tags: rp3
+  roles:
+    - rp3
+
+- hosts:
+    - rp4
+  tags: rp4
+  roles:
+    - rp4
+
+- hosts:
+    - infrastructure
+  tags: infra
+  roles:
+    - infra
+
+- hosts:
+    - ns
+  tags: ns
+  roles:
+    - ns

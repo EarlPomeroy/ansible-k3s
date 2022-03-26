@@ -1,0 +1,4 @@
+---
+- name: NS tasks
+  debug:
+    msg: Run NS tasks here

@@ -1,0 +1,4 @@
+---
+- name: Infra tasks
+  debug:
+    msg: Run Infra tasks here

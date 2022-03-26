@@ -1,0 +1,21 @@
+---
+all:
+  vars:
+    ansible_become: true
+    ansible_become_method: sudo
+  children:
+    ns:
+      hosts:
+        jupiter:
+    infrastructure:
+      hosts:
+        octopi:
+    rp3:
+      hosts:
+        ctrl2-rp3:
+        ctrl3-rp3:
+        rp3-twr[1:5]:
+    rp4:
+      hosts:
+        ctrl1-rp4:
+        rp4-rack[1:6]:
