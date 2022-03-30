@@ -1,0 +1,37 @@
+$ORIGIN .
+$TTL 604800     ; 1 week
+42.168.192.in-addr.arpa IN SOA  ns.home.lan. root.home.lan. (
+                                2022032801 ; serial
+                                604800     ; refresh (1 week)
+                                86400      ; retry (1 day)
+                                2419200    ; expire (4 weeks)
+                                604800     ; minimum (1 week)
+                                )
+                        NS      ns.
+$ORIGIN 42.168.192.in-addr.arpa.
+$TTL 3600       ; 1 hour
+102                     PTR     rp3-twr3.home.lan.
+103                     PTR     rp4-rack1.home.lan.
+104                     PTR     ctrl2-rp3.home.lan.
+112                     PTR     Pixel-6-Pro.home.lan.
+115                     PTR     ctrl3-rp3.home.lan.
+117                     PTR     rp4-rack6.home.lan.
+118                     PTR     rp4-rack2.home.lan.
+130                     PTR     callisto.home.lan.
+133                     PTR     ctrl1-rp4.home.lan.
+134                     PTR     Google-Nest-Mini.home.lan.
+144                     PTR     terra.home.lan.
+145                     PTR     octopi.home.lan.
+155                     PTR     rp4-rack4.home.lan.
+156                     PTR     rp3-twr1.home.lan.
+159                     PTR     rp3-twr4.home.lan.
+160                     PTR     rp3-twr5.home.lan.
+164                     PTR     rp3-twr2.home.lan.
+174                     PTR     rp4-rack3.home.lan.
+175                     PTR     rp4-rack5.home.lan.
+181                     PTR     Pixel-4-XL.home.lan.
+182                     PTR     Ganymede.home.lan.
+191                     PTR     Google-Nest-Mini.home.lan.
+$TTL 604800     ; 1 week
+2                       PTR     ns.home.lan.
+250                     PTR     switch.home.lan.

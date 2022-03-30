@@ -1,0 +1,20 @@
+include "/etc/bind/rndc.key";
+
+controls {
+  inet 127.0.0.1 port 953 allow {
+    127.0.0.1;
+    192.168.42.2;
+  } keys { "rndc-key"; }; #We can now refer to the key with this variable
+};
+
+zone "home.lan" {
+  type master;
+  file "/var/lib/bind/db.home.lan";
+  allow-update { key rndc-key; };
+};
+
+zone "42.168.192.in-addr.arpa" {
+  type master;
+  file "/var/lib/bind/db.192";
+  allow-update { key rndc-key; };
+};

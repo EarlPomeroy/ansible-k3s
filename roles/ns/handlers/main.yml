@@ -1,0 +1,10 @@
+---
+- name: restart named
+  systemd:
+    name: bind9
+    state: restarted
+
+- name: restart dhcpd
+  systemd:
+    name: isc-dhcp-server
+    state: restarted
