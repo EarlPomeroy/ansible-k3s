@@ -1,7 +1,7 @@
 $ORIGIN .
 $TTL 604800     ; 1 week
 home.lan                IN SOA  home.lan. root.home.lan. (
-                                2022032801 ; serial
+                                2022033101 ; serial
                                 604800     ; refresh (1 week)
                                 86400      ; retry (1 day)
                                 2419200    ; expire (4 weeks)
@@ -14,46 +14,21 @@ $ORIGIN home.lan.
 $TTL 604800     ; 1 week
 jupiter                 CNAME   ns
 ns                      A       192.168.42.2
+octopi                  A       192.168.42.20
+rp3-twr1                A       192.168.42.30
+rp3-twr2                A       192.168.42.31
+rp3-twr3                A       192.168.42.32
+rp3-twr4                A       192.168.42.33
+rp3-twr5                A       192.168.42.34
+ctrl1-rp4               A       192.168.42.40
+ctrl2-rp3               A       192.168.42.41
+ctrl3-rp3               A       192.168.42.42
+rp4-rack1               A       192.168.42.50
+rp4-rack2               A       192.168.42.51
+rp4-rack3               A       192.168.42.52
+rp4-rack4               A       192.168.42.53
+rp4-rack5               A       192.168.42.54
+rp4-rack6               A       192.168.42.55
 switch                  A       192.168.42.250
 $TTL 3600       ; 1 hour
-callisto                A       192.168.42.130
-                        TXT     "318b319357f92bfca7085b700c7f743efb"
-ctrl1-rp4               A       192.168.42.133
-                        TXT     "319bc7698c0fea45a2bb76814544c92602"
-ctrl2-rp3               A       192.168.42.104
-                        TXT     "315958f3c51ef97bd9515a3dcd0675d80e"
-ctrl3-rp3               A       192.168.42.115
-                        TXT     "316fa876d95bc498cd51885a545b24d415"
-Google-Nest-Mini        A       192.168.42.134
-                        TXT     "00167ad003e77154d387c4409c564d09b2"
-octopi                  A       192.168.42.145
-                        TXT     "31e50b9688a1cc2bb4fe92c326f0843676"
-Pixel-4-XL              A       192.168.42.181
-                        TXT     "3194f66c4bfe9fca62839c32dea1386d24"
-Pixel-6-Pro             A       192.168.42.112
-                        TXT     "319dcf9bc357e01ee4618925217cac893f"
-rp3-twr1                A       192.168.42.156
-                        TXT     "31086522e632fd593a94432bb0b670e168"
-rp3-twr2                A       192.168.42.164
-                        TXT     "3197d595c1443f37d5969cc7320b4b26f4"
-rp3-twr3                A       192.168.42.102
-                        TXT     "31341ab1a796cd4c7ceb24b6dadc7298fe"
-rp3-twr4                A       192.168.42.159
-                        TXT     "316b833dfdab5c3655fbf1476ebbf2c6a1"
-rp3-twr5                A       192.168.42.160
-                        TXT     "31425ada4cc8bbc06709d914d10eae91a4"
-rp4-rack1               A       192.168.42.103
-                        TXT     "31a09217b5160c1a6f80923b4ca4a93458"
-rp4-rack2               A       192.168.42.118
-                        TXT     "3164a8b34dc267bbc8101d90ad6a577850"
-rp4-rack3               A       192.168.42.174
-                        TXT     "31118aeb2d747040de72d247864c702a74"
-rp4-rack4               A       192.168.42.155
-                        TXT     "312fca1d0b3a58f65334c9fe04c6c5323d"
-rp4-rack5               A       192.168.42.175
-                        TXT     "312e56531330dbd49d949e79409e4adab9"
-rp4-rack6               A       192.168.42.117
-                        TXT     "314360ed08e56cb903b71f94aed662be6d"
-terra                   A       192.168.42.144
-                        TXT     "3181c63a2dc00429d267c1db11b66e2276"
                         
