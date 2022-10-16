@@ -19,3 +19,9 @@ all:
       hosts:
         ctrl1-rp4:
         rp4-rack[1:6]:
+    power:
+      hosts:
+        ctrl1-rp4:
+        ctrl2-rp3:
+        ctrl3-rp3:
+        rp4-rack[1:6]:
