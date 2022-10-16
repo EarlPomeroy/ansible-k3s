@@ -1,0 +1,3 @@
+---
+- name: Restart for boot config change
+  reboot:

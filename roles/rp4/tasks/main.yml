@@ -1,4 +1,9 @@
 ---
-- name: RP4 tasks
-  debug:
-    msg: Run RP4 tasks here
+- name: Update boot config.txt file
+  copy:
+    src: config.txt
+    dest: /boot/config.txt
+    owner: root
+    group: root
+    mode: 0755
+  notify: Restart for boot config change
