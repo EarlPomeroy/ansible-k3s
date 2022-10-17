@@ -1,10 +1,26 @@
 ---
-- name: Restart named
+- name: Find named jnl bind files
+  find:
+    paths: /var/lib/bind
+    patterns: "*.jnl"
+  register: files_to_delete
+  listen: restart named
+
+- name: Remove named jnl bind files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"
+  listen: restart named
+
+- name: Restart named server
   systemd:
     name: bind9
     state: restarted
+  listen: restart named
 
-- name: Restart dhcpd
+- name: Restart DHCPD server
   systemd:
     name: isc-dhcp-server
     state: restarted
+  listen: restart dhcpd

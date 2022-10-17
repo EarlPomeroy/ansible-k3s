@@ -4,19 +4,6 @@
     - rp4
     - infrastructure
     - ns
-  tags: all
-  roles:
-    - common
-    - rp3
-    - rp4
-    - infra
-    - ns
-
-- hosts:
-    - rp3
-    - rp4
-    - infrastructure
-    - ns
   tags: common
   roles:
     - common

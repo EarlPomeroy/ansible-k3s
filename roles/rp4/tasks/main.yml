@@ -6,4 +6,4 @@
     owner: root
     group: root
     mode: 0755
-  notify: Restart for boot config change
+  notify: Restart boot config
