@@ -31,9 +31,3 @@
   tags: ns
   roles:
     - ns
-
-- hosts:
-    - power
-  tags: none, power
-  roles:
-    - power

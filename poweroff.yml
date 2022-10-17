@@ -1,0 +1,6 @@
+---
+- hosts:
+    - power
+  tags: none, power
+  roles:
+    - power
