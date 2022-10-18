@@ -1,0 +1,36 @@
+---
+- name: Update APT cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install NFS Server
+  apt:
+    pkg:
+      - nfs-kernel-server
+
+- name: Restart NFS Server
+  systemd:
+    name: nfs-kernel-server
+    enabled: true
+    state: started
+
+# Setup NFS mount point for projects
+- name: Setup Jenkins mount point
+  file:
+    path: /opt/nfs/jenkins
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+
+- name: Setup NFS mount points
+  template:
+    src: exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Export NFS mount points
+    - Restart NFS Server

@@ -1,0 +1,9 @@
+---
+- name: Export NFS mount points
+  command:
+    cmd: exportfs -av
+
+- name: Restart NFS Server
+  systemd:
+    name: nfs-kernel-server
+    state: restarted

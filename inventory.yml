@@ -7,6 +7,9 @@ all:
     ns:
       hosts:
         jupiter:
+    nfs:
+      hosts:
+        jupiter:
     infrastructure:
       hosts:
         octopi:

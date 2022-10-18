@@ -31,3 +31,9 @@
   tags: ns
   roles:
     - ns
+
+- hosts:
+    - nfs
+  tags: nfs
+  roles:
+    - nfs
