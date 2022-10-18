@@ -37,3 +37,9 @@
   tags: nfs
   roles:
     - nfs
+
+- hosts:
+    - jenkins
+  tags: jenkins
+  roles:
+    - jenkins

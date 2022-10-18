@@ -9,20 +9,11 @@
     pkg:
       - nfs-kernel-server
 
-- name: Restart NFS Server
+- name: Enable and start NFS Server
   systemd:
     name: nfs-kernel-server
     enabled: true
     state: started
-
-# Setup NFS mount point for projects
-- name: Setup Jenkins mount point
-  file:
-    path: /opt/nfs/jenkins
-    state: directory
-    owner: root
-    group: root
-    mode: 0777
 
 - name: Setup NFS mount points
   template:

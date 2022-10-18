@@ -1,3 +1,4 @@
+---
 - name: Shutdown host
   command:
     cmd: /sbin/shutdown -h now
