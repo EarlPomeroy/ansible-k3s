@@ -1,0 +1,9 @@
+---
+- hosts:
+    - rp3
+    - rp4
+    - infrastructure
+    - ns
+  tags: audit
+  roles:
+    - audit
