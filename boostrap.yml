@@ -21,7 +21,7 @@
         key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWGjIixGg5xru1ORmSZA5gHppTqaBO8gALHFNeo/WJl epomeroy@callisto"
 
     - name: add sudoers file for epomeroy
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/sudoers.d/epomeroy
         line: "epomeroy ALL=(ALL) NOPASSWD: ALL"
         state: present

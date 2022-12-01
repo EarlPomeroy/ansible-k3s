@@ -1,6 +1,6 @@
 ---
 - name: Update boot config.txt file
-  copy:
+  ansible.builtin.copy:
     src: config.txt
     dest: /boot/config.txt
     owner: root
