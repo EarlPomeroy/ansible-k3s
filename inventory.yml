@@ -22,6 +22,20 @@ all:
       hosts:
         ctrl1-rp4:
         rp4-rack[1:6]:
+    k3s_common:
+      hosts:
+        ctrl1-rp4:
+        ctrl2-rp3:
+        ctrl3-rp3:
+        rp4-rack[1:6]:
+    k3s_server:
+      hosts:
+        ctrl1-rp4:
+        ctrl2-rp3:
+        ctrl3-rp3:
+    k3s_node:
+      hosts:
+        rp4-rack[1:6]:
     power:
       hosts:
         ctrl1-rp4:

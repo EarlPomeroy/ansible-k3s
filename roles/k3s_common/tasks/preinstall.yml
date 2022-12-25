@@ -1,0 +1,35 @@
+---
+- name: Enable IPv4 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    state: present
+    reload: true
+
+- name: Enable IPv6 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: "1"
+    state: present
+    reload: true
+
+- name: Test for Raspbian
+  ansible.builtin.stat:
+    path: /boot/cmdline.txt
+  register: cmdline
+
+- name: Activating cgroup on Raspbian
+  ansible.builtin.lineinfile:
+    path: /boot/cmdline.txt
+    regexp: "^(.*rootwait)$"
+    line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+    backrefs: true
+  when:
+    - cmdline.stat.path is defined
+    - ( ansible_facts.architecture is search("arm") and
+      ansible_facts.userspace_bits == "64" ) or
+      ansible_facts.architecture is search("aarch64")
+  notify: Reboot servers
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

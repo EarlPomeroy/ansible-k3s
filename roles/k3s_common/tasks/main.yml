@@ -1,0 +1,10 @@
+---
+- name: Include secret vars
+  ansible.builtin.include_vars:
+    file: secrets.txt
+
+- name: Install and configure k3s
+  ansible.builtin.import_tasks: preinstall.yml
+
+- name: Download files
+  ansible.builtin.import_tasks: download.yml

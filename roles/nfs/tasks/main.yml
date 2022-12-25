@@ -1,22 +1,22 @@
 ---
 - name: Update APT cache
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
 
 - name: Install NFS Server
-  apt:
+  ansible.builtin.apt:
     pkg:
       - nfs-kernel-server
 
 - name: Enable and start NFS Server
-  systemd:
+  ansible.builtin.systemd:
     name: nfs-kernel-server
     enabled: true
     state: started
 
 - name: Setup NFS mount points
-  template:
+  ansible.builtin.template:
     src: exports.j2
     dest: /etc/exports
     owner: root

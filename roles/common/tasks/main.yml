@@ -1,26 +1,26 @@
 ---
 - name: Update APT cache
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
 
 - name: Install base tool set
-  apt:
+  ansible.builtin.apt:
     pkg:
       - vim
 
 - name: Update all packages to the latest version
-  apt:
+  ansible.builtin.apt:
     upgrade: dist
 
 - name: Check if a reboot is needed on all servers
-  stat:
+  ansible.builtin.stat:
     path: /var/run/reboot-required
     get_md5: false
   register: reboot_required_file
 
 - name: Restart servers
-  reboot:
+  ansible.builtin.reboot:
     msg: "Reboot initiated by Ansible for kernel updates"
     connect_timeout: 5
     reboot_timeout: 300
@@ -30,16 +30,35 @@
   when: reboot_required_file.stat.exists
 
 - name: Clean local APT repository
-  apt:
+  ansible.builtin.apt:
     autoclean: true
     autoremove: true
 
+- name: Update bashrc with basic setting
+  ansible.builtin.copy:
+    src: bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_hostname != "jupiter"
+
 - name: Set static IP addresses
-  template:
+  ansible.builtin.template:
     src: dhcpcd.conf.j2
     dest: /etc/dhcpcd.conf
     owner: root
     group: netdev
     mode: 0664
   when: ansible_hostname != "jupiter"
-  notify: Restart server IP change
+  notify: Restart server
+
+- name: Set resolvconf.conf file with search domain settings
+  ansible.builtin.template:
+    src: resolvconf.conf.j2
+    dest: /etc/resolvconf.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_hostname != "jupiter"
+  notify: Restart server
