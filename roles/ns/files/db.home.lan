@@ -16,6 +16,7 @@ $TTL 604800     ; 1 week
 gateway         IN      A       192.168.42.1
 ns              IN      A       192.168.42.2
 jupiter         IN      A       192.168.42.2
+saturn          IN      A       192.168.42.10
 octopi          IN      A       192.168.42.20
 rp3-twr1        IN      A       192.168.42.30
 rp3-twr2        IN      A       192.168.42.31

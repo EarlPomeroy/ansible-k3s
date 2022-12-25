@@ -17,6 +17,7 @@ $TTL 604800     ; 1 week
 1               IN      PTR     gateway.home.lan.                   
 2               IN      PTR     ns.home.lan.
 2               IN      PTR     jupiter.home.lan.
+10              IN      PTR     saturn.home.lan.
 20              IN      PTR     octopi.home.lan.
 30              IN      PTR     rp3-twr1.home.lan.
 31              IN      PTR     rp3-twr2.home.lan.

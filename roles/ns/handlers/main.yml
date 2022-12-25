@@ -1,4 +1,10 @@
 ---
+- name: Stop named server
+  ansible.builtin.systemd:
+    name: bind9
+    state: stopped
+  listen: restart named
+
 - name: Find named jnl bind files
   ansible.builtin.find:
     paths: /var/lib/bind
@@ -17,6 +23,12 @@
   ansible.builtin.systemd:
     name: bind9
     state: restarted
+  listen: restart named
+
+- name: Reload named server
+  ansible.builtin.systemd:
+    name: bind9
+    state: reloaded
   listen: restart named
 
 - name: Restart DHCPD server

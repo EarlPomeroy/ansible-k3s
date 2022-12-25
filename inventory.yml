@@ -13,6 +13,7 @@ all:
     infrastructure:
       hosts:
         octopi:
+        saturn:
     rp3:
       hosts:
         ctrl2-rp3:
