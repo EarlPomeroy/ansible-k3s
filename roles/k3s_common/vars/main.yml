@@ -13,6 +13,6 @@ server_init_args: >-
   {% endif %}
   {{ extra_server_args | default('') }}
 
-apiserver_endpoint: "{{ hostvars[groups['k3s_server'][0]]['ansible_host'] | default(groups['k3s_server'][0]) }}"
+apiserver_endpoint: k3s-ctrl.home.lan
 
 k3s_version: v1.25.4+k3s1

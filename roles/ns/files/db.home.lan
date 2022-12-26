@@ -19,6 +19,7 @@ jupiter         IN      A       192.168.42.2
 saturn          IN      A       192.168.42.10
 octopi          IN      A       192.168.42.20
 rp3-twr1        IN      A       192.168.42.30
+k3s-ctrl        IN      CNAME   rp3-twr1
 rp3-twr2        IN      A       192.168.42.31
 rp3-twr3        IN      A       192.168.42.32
 rp3-twr4        IN      A       192.168.42.33

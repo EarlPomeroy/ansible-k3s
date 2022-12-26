@@ -1,4 +1,24 @@
 ---
-- name: Infra tasks
-  ansible.builtin.debug:
-    msg: Run Infra tasks here
+- name: Install HAProxy on rp3-twr1
+  ansible.builtin.apt:
+    pkg:
+      - haproxy
+      - nginx
+  when: ansible_hostname == "rp3-twr1"
+
+- name: Enable HAProxy service
+  ansible.builtin.systemd:
+    name: haproxy
+    enabled: true
+    state: started
+  when: ansible_hostname == "rp3-twr1"
+
+- name: Configure HAProxy
+  ansible.builtin.template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_hostname == "rp3-twr1"
+  notify: Restart HAProxy Service
