@@ -17,6 +17,8 @@ gateway         IN      A       192.168.42.1
 ns              IN      A       192.168.42.2
 jupiter         IN      A       192.168.42.2
 saturn          IN      A       192.168.42.10
+jenkins         IN      CNAME   saturn
+awx             IN      CNAME   saturn
 octopi          IN      A       192.168.42.20
 rp3-twr1        IN      A       192.168.42.30
 k3s-ctrl        IN      CNAME   rp3-twr1

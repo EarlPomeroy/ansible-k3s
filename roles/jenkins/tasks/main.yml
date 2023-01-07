@@ -1,0 +1,47 @@
+---
+- name: Configure APT for Jenkins install
+  block:
+    - name: Get Jenkins GPG key
+      ansible.builtin.apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        state: present
+
+    - name: Add Jenkins repo
+      ansible.builtin.apt_repository:
+        repo: "deb https://pkg.jenkins.io/debian-stable binary/"
+        state: present
+        filename: jenkins
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Create Jenkins user and generate a 4096 bit SSH key
+  ansible.builtin.user:
+    name: jenkins
+    generate_ssh_key: true
+    ssh_key_bits: 4096
+    ssh_key_file: .ssh/id_rsa
+    ssh_key_comment: jenkins
+
+- name: Install Jenkins
+  ansible.builtin.apt:
+    pkg:
+      - jenkins
+      - default-jdk-headless
+
+- name: Enable and start Jenkins service
+  ansible.builtin.systemd:
+    name: jenkins
+    state: started
+    enabled: true
+
+- name: Configure Nginx for Jenkins
+  ansible.builtin.template:
+    src: jenkins.conf.j2
+    dest: /etc/nginx/conf.d/jenkins.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Nginx

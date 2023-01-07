@@ -2,29 +2,23 @@
 - hosts:
     - rp3
     - rp4
-    - infrastructure
+    - jenkins
     - ns
   tags: common
   roles:
     - common
 
 - hosts:
-    - rp3
-  tags: rp3
+    - haproxy
+  tags: haproxy
   roles:
-    - rp3
+    - haproxy
 
 - hosts:
-    - rp4
-  tags: rp4
+    - jenkins
+  tags: jenkins
   roles:
-    - rp4
-
-- hosts:
-    - infrastructure
-  tags: infra
-  roles:
-    - infra
+    - jenkins
 
 - hosts:
     - k3s_common
@@ -63,3 +57,15 @@
   tags: nfs
   roles:
     - nfs
+
+- hosts:
+    - rp3
+  tags: rp3
+  roles:
+    - rp3
+
+- hosts:
+    - rp4
+  tags: rp4
+  roles:
+    - rp4

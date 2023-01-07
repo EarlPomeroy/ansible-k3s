@@ -9,6 +9,20 @@
     pkg:
       - sudo
       - vim
+      - gpg
+
+- name: Install Nginx for designated server
+  ansible.builtin.apt:
+    pkg:
+      - nginx
+  when: ansible_hostname == "saturn"
+
+- name: Enable Nginx service
+  ansible.builtin.systemd:
+    name: nginx
+    enabled: true
+    state: started
+  when: ansible_hostname == "saturn"
 
 - name: Create epomeroy user
   ansible.builtin.user:

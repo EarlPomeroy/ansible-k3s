@@ -4,26 +4,12 @@ all:
     ansible_become: true
     ansible_become_method: sudo
   children:
-    ns:
+    haproxy:
       hosts:
-        jupiter:
-    nfs:
+        rp3-twr1:
+    jenkins:
       hosts:
-        jupiter:
-    infrastructure:
-      hosts:
-        octopi:
         saturn:
-        rp3-twr[1:5]:
-    rp3:
-      hosts:
-        ctrl2-rp3:
-        ctrl3-rp3:
-        rp3-twr[1:5]:
-    rp4:
-      hosts:
-        ctrl1-rp4:
-        rp4-rack[1:6]:
     k3s_common:
       hosts:
         ctrl1-rp4:
@@ -37,6 +23,22 @@ all:
         ctrl3-rp3:
     k3s_node:
       hosts:
+        rp4-rack[1:6]:
+    ns:
+      hosts:
+        jupiter:
+    nfs:
+      hosts:
+        jupiter:
+    rp3:
+      hosts:
+        ctrl2-rp3:
+        ctrl3-rp3:
+        rp3-twr[1:5]:
+        octopi:
+    rp4:
+      hosts:
+        ctrl1-rp4:
         rp4-rack[1:6]:
     power:
       hosts:
