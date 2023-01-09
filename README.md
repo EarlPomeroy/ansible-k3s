@@ -10,4 +10,4 @@ This controls the RP3/4 setup for host services:
 
 ## Status
 
-![Validation](https://github.com/github/docs/actions/workflows/lint.yml/badge.svg)
+![Validation](https://github.com/EarlPomeroy/home-network-ansible/actions/workflows/lint.yml/badge.svg)
