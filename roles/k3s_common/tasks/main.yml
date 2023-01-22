@@ -4,7 +4,7 @@
     file: secrets.txt
 
 - name: Install and configure k3s
-  ansible.builtin.import_tasks: preinstall.yml
+  ansible.builtin.include_tasks: "preinstall-{{ ansible_architecture }}.yml"
 
 - name: Download files
-  ansible.builtin.import_tasks: download.yml
+  ansible.builtin.include_tasks: "download-{{ ansible_architecture }}.yml"

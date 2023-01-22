@@ -1,0 +1,33 @@
+---
+- name: Enable IPv4 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    state: present
+    reload: true
+
+- name: Enable IPv6 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: "1"
+    state: present
+    reload: true
+
+- name: Test for Debian
+  ansible.builtin.stat:
+    path: /etc/default/grub
+  register: grubconf
+
+- name: Activating cgroup on Debian
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    line: 'GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=0"'
+    state: present
+  when:
+    - grubconf.stat.path is defined
+    - ( ansible_facts.architecture is search("x86_64") and
+      ansible_facts.userspace_bits == "64" )
+  notify: Reboot servers
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

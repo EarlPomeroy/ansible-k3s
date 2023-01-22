@@ -16,6 +16,7 @@ all:
         ctrl2-rp3:
         ctrl3-rp3:
         rp4-rack[1:6]:
+        saturn:
     k3s_server:
       hosts:
         ctrl1-rp4:
@@ -24,6 +25,7 @@ all:
     k3s_node:
       hosts:
         rp4-rack[1:6]:
+        saturn:
     ns:
       hosts:
         jupiter:
