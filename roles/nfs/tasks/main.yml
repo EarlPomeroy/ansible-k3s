@@ -15,6 +15,13 @@
     enabled: true
     state: started
 
+- name: Create NFS directories
+  ansible.builtin.file:
+    path: "{{ item.value['path'] }}"
+    state: directory
+    mode: 0777
+  loop: "{{ nfs_shares | dict2items }}"
+
 - name: Setup NFS mount points
   ansible.builtin.template:
     src: exports.j2
