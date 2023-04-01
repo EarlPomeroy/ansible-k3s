@@ -10,6 +10,8 @@
       - sudo
       - vim
       - gpg
+      - curl
+      - wget
 
 - name: Install Nginx for designated server
   ansible.builtin.apt:
@@ -24,25 +26,42 @@
     state: started
   when: ansible_hostname == "saturn"
 
-- name: Create epomeroy user
+- name: Remove epomeroy user
   ansible.builtin.user:
     name: epomeroy
+    remove: true
+    state: absent
+
+- name: Remove epomeroy home dir
+  ansible.builtin.file:
+    path: /home/epomeroy
+    state: absent
+
+- name: Create jpomeroy user
+  ansible.builtin.user:
+    name: jpomeroy
     shell: /bin/bash
 
-- name: Add terra ssh key for epomeroy
+- name: Add terra ssh key for jpomeroy
   ansible.posix.authorized_key:
-    user: epomeroy
+    user: jpomeroy
     key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGnW2dkO+xoxwxrNKeomjUm3xWaNlBA/upF3rlf3YbSl epomeroy@terra"
 
-- name: Add callisto ssh key for epomeroy
+- name: Add callisto ssh key for jpomeroy
   ansible.posix.authorized_key:
-    user: epomeroy
+    user: jpomeroy
     key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWGjIixGg5xru1ORmSZA5gHppTqaBO8gALHFNeo/WJl epomeroy@callisto"
 
-- name: Add sudoers file for epomeroy
-  ansible.builtin.lineinfile:
+- name: Remove sudoers file for epomeroy
+  ansible.builtin.file:
     path: /etc/sudoers.d/epomeroy
-    line: "epomeroy ALL=(ALL) NOPASSWD: ALL"
+    state: absent
+
+- name: Add sudoers file for jpomeroy
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/jpomeroy
+    line: "jpomeroy ALL=(ALL) NOPASSWD: ALL"
     state: present
     mode: 0440
     create: true

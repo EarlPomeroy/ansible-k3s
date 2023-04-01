@@ -1,5 +1,5 @@
 ---
-- name: Export NFS mount points
+- name: Export NFS mount points # noqa no-changed-when
   ansible.builtin.command:
     cmd: exportfs -av
 

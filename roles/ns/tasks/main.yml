@@ -23,7 +23,7 @@
     path: /etc/bind/rndc.key
   register: bind_key_file
 
-- name: Create rndc.key if it does not exist
+- name: Create rndc.key if it does not exist # noqa no-changed-when
   ansible.builtin.command: rndc-confgen -a
   when: not bind_key_file.stat.exists
   notify: restart named

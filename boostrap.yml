@@ -1,29 +1,31 @@
 ---
+- name: boostrap
+
 - hosts: all
   become: true
 
 - hosts: all
   become: true
   tasks:
-    - name: create epomeroy user
-      user:
-        name: epomeroy
+    - name: Create jpomeroy user
+      ansible.builtin.user:
+        name: jpomeroy
         shell: /bin/bash
 
-    - name: add terra ssh key for epomeroy
-      authorized_key:
-        user: epomeroy
-        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGnW2dkO+xoxwxrNKeomjUm3xWaNlBA/upF3rlf3YbSl epomeroy@terra"
+    - name: Add terra ssh key for jpomeroy
+      ansible.builtin.authorized_key:
+        user: jpomeroy
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGnW2dkO+xoxwxrNKeomjUm3xWaNlBA/upF3rlf3YbSl jpomeroy@terra"
 
-    - name: add callisto ssh key for epomeroy
-      authorized_key:
-        user: epomeroy
-        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWGjIixGg5xru1ORmSZA5gHppTqaBO8gALHFNeo/WJl epomeroy@callisto"
+    - name: Add callisto ssh key for jpomeroy
+      ansible.builtin.authorized_key:
+        user: jpomeroy
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWGjIixGg5xru1ORmSZA5gHppTqaBO8gALHFNeo/WJl jpomeroy@callisto"
 
-    - name: add sudoers file for epomeroy
+    - name: Add sudoers file for jpomeroy
       ansible.builtin.lineinfile:
-        path: /etc/sudoers.d/epomeroy
-        line: "epomeroy ALL=(ALL) NOPASSWD: ALL"
+        path: /etc/sudoers.d/jpomeroy
+        line: "jpomeroy ALL=(ALL) NOPASSWD: ALL"
         state: present
         mode: 0440
         create: true
