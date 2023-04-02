@@ -3,8 +3,8 @@ name: Lint
 "on":
   pull_request:
   push:
-    branches:
-      - main
+  # branches:
+  #   - main
 
 jobs:
   test:
@@ -21,13 +21,10 @@ jobs:
           python-version: "3.x"
 
       - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint
-
-      - name: Touch the .ansible-pass file
-        run: touch $HOME/.ansible-pass
+        run: pip3 install yamllint
 
       - name: Run yamllint.
         run: yamllint .
 
-      - name: Run ansible-lint.
-        run: ansible-lint
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint-action@main
