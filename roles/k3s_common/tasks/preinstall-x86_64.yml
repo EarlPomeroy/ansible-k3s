@@ -1,5 +1,6 @@
 ---
 - name: Enable IPv4 forwarding
+  tags: k3s_common
   ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: "1"
@@ -7,6 +8,7 @@
     reload: true
 
 - name: Enable IPv6 forwarding
+  tags: k3s_common
   ansible.posix.sysctl:
     name: net.ipv6.conf.all.forwarding
     value: "1"
@@ -14,11 +16,13 @@
     reload: true
 
 - name: Test for Debian
+  tags: k3s_common
   ansible.builtin.stat:
     path: /etc/default/grub
   register: grubconf
 
 - name: Activating cgroup on Debian
+  tags: k3s_common
   ansible.builtin.lineinfile:
     path: /etc/default/grub
     line: 'GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=0"'
@@ -30,4 +34,5 @@
   notify: Reboot servers
 
 - name: Flush handlers
+  tags: k3s_common
   ansible.builtin.meta: flush_handlers

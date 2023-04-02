@@ -1,10 +1,12 @@
 ---
 - name: Delete k3s if already present
+  tags: k3s_common
   ansible.builtin.file:
     path: /usr/local/bin/k3s
     state: absent
 
 - name: Download k3s app for ARM64
+  tags: k3s_common
   ansible.builtin.get_url:
     url: https://github.com/k3s-io/k3s/releases/download/{{ k3s_version }}/k3s-arm64
     dest: /usr/local/bin/k3s

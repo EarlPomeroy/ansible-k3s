@@ -1,17 +1,20 @@
 ---
 - name: Install HAProxy
+  tags: haproxy
   ansible.builtin.apt:
     pkg:
       - haproxy
       - nginx
 
 - name: Enable HAProxy service
+  tags: haproxy
   ansible.builtin.systemd:
     name: haproxy
     enabled: true
     state: started
 
 - name: Configure HAProxy
+  tags: haproxy
   ansible.builtin.template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg

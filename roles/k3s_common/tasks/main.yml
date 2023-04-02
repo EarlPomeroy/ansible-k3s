@@ -1,10 +1,13 @@
 ---
 - name: Include secret vars
+  tags: k3s_common
   ansible.builtin.include_vars:
     file: secrets.txt
 
 - name: Install and configure k3s
+  tags: k3s_common
   ansible.builtin.include_tasks: "preinstall-{{ ansible_architecture }}.yml"
 
 - name: Download files
+  tags: k3s_common
   ansible.builtin.include_tasks: "download-{{ ansible_architecture }}.yml"

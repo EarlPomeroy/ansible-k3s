@@ -1,5 +1,6 @@
 ---
 - name: Enable IPv4 forwarding
+  tags: k3s_common
   ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: "1"
@@ -7,6 +8,7 @@
     reload: true
 
 - name: Enable IPv6 forwarding
+  tags: k3s_common
   ansible.posix.sysctl:
     name: net.ipv6.conf.all.forwarding
     value: "1"
@@ -14,11 +16,13 @@
     reload: true
 
 - name: Test for Raspbian
+  tags: k3s_common
   ansible.builtin.stat:
     path: /boot/cmdline.txt
   register: cmdline
 
 - name: Activating cgroup on Raspbian
+  tags: k3s_common
   ansible.builtin.lineinfile:
     path: /boot/cmdline.txt
     regexp: "^(.*rootwait)$"
@@ -32,4 +36,5 @@
   notify: Reboot servers
 
 - name: Flush handlers
+  tags: k3s_common
   ansible.builtin.meta: flush_handlers

@@ -1,83 +1,59 @@
 ---
-# - name: Main play
-
-- hosts:
-    - rp3
-    - rp4
-    - jenkins
-    - ns
-  tags: common
+- name: Common tasks
+  hosts: all
   roles:
     - common
 
-- hosts:
-    - haproxy
-
-  tags: haproxy
+- name: HAProxy tasks
+  hosts: haproxy
   roles:
     - haproxy
 
-- hosts:
-    - jenkins
-
-  tags: jenkins
+- name: Jenkins tasks
+  hosts: jenkins
   roles:
     - jenkins
 
-# - hosts:
-#     - k3s_common
+- name: K3S common tasks
+  hosts:
+    - k3s_node
+    - k3s_server
+  roles:
+    - k3s_common
 
-#   tags: k3s_common
-#   roles:
-#     - k3s_common
+- name: K3S server tasks
+  hosts: k3s_server
+  roles:
+    - k3s_common
+    - k3s_server
 
-# - hosts:
-#     - k3s_server
+- name: K3S node tasks
+  hosts: k3s_node
+  roles:
+    - k3s_common
+    - k3s_node
 
-#   tags: k3s_server
-#   roles:
-#     - k3s_common
-#     - k3s_server
+- name: K3S reset node tasks
+  hosts: k3s_node
+  roles:
+    - k3s_reset
 
-# - hosts:
-#     - k3s_node
-
-#   tags: k3s_node
-#   roles:
-#     - k3s_common
-#     - k3s_node
-
-# - hosts:
-#     - k3s_common
-
-#   tags: k3s_reset
-#   roles:
-#     - k3s_reset
-
-- hosts:
-    - ns
-
-  tags: ns
+- name: Name server tasks
+  hosts: ns
   roles:
     - ns
 
-- hosts:
-    - nfs
-
-  tags: nfs
+- name: NFS tasks
+  hosts: nfs
   roles:
     - nfs
 
-- hosts:
-    - rp3
-
-  tags: rp3
+- name: RP3  tasks
+  hosts: rp3
   roles:
     - rp3
 
-- hosts:
-    - rp4
-
-  tags: rp4
+- name: RP4 tasks
+  hosts: rp4
   roles:
     - rp4

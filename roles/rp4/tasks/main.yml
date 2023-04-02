@@ -1,5 +1,6 @@
 ---
 - name: Update boot config.txt file
+  tags: rp4
   ansible.builtin.copy:
     src: config.txt
     dest: /boot/config.txt

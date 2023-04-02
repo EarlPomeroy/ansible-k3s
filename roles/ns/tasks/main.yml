@@ -1,5 +1,6 @@
 ---
 - name: Install NS APT packages
+  tags: ns
   ansible.builtin.apt:
     pkg:
       - isc-dhcp-server
@@ -7,28 +8,33 @@
       - bind9utils
 
 - name: Enable bind service
+  tags: ns
   ansible.builtin.systemd:
     name: bind9
     enabled: true
     state: started
 
 - name: Enable dhcpd service
+  tags: ns
   ansible.builtin.systemd:
     name: isc-dhcp-server
     enabled: true
     state: started
 
 - name: Check for rndc.key file
+  tags: ns
   ansible.builtin.stat:
     path: /etc/bind/rndc.key
   register: bind_key_file
 
 - name: Create rndc.key if it does not exist # noqa no-changed-when
+  tags: ns
   ansible.builtin.command: rndc-confgen -a
   when: not bind_key_file.stat.exists
   notify: restart named
 
 - name: Set file ownership and permissions for rndc.key
+  tags: ns
   ansible.builtin.file:
     path: /etc/bind/rndc.key
     owner: bind
@@ -37,6 +43,7 @@
   notify: restart named
 
 - name: Copy rndc.key for dhcpd
+  tags: ns
   ansible.builtin.copy:
     src: /etc/bind/rndc.key
     remote_src: true
@@ -47,6 +54,7 @@
   notify: restart dhcpd
 
 - name: Copy named.conf
+  tags: ns
   ansible.builtin.copy:
     src: named.conf
     dest: /etc/bind/named.conf
@@ -56,6 +64,7 @@
   notify: restart named
 
 - name: Copy named.conf.default
+  tags: ns
   ansible.builtin.copy:
     src: named.conf.default
     dest: /etc/bind/named.conf.default
@@ -65,6 +74,7 @@
   notify: restart named
 
 - name: Copy named.conf.local
+  tags: ns
   ansible.builtin.copy:
     src: named.conf.local
     dest: /etc/bind/named.conf.local
@@ -74,6 +84,7 @@
   notify: restart named
 
 - name: Copy named.conf.options
+  tags: ns
   ansible.builtin.copy:
     src: named.conf.options
     dest: /etc/bind/named.conf.options
@@ -83,6 +94,7 @@
   notify: restart named
 
 - name: Create a /var/lib/bind directory if it does not exist
+  tags: ns
   ansible.builtin.file:
     path: /var/lib/bind
     owner: bind
@@ -91,6 +103,7 @@
     mode: 0775
 
 - name: Copy db.0
+  tags: ns
   ansible.builtin.copy:
     src: db.0
     dest: /etc/bind/db.0
@@ -100,6 +113,7 @@
   notify: restart named
 
 - name: Copy db.127
+  tags: ns
   ansible.builtin.copy:
     src: db.127
     dest: /etc/bind/db.127
@@ -109,6 +123,7 @@
   notify: restart named
 
 - name: Copy db.255
+  tags: ns
   ansible.builtin.copy:
     src: db.255
     dest: /etc/bind/db.255
@@ -118,6 +133,7 @@
   notify: restart named
 
 - name: Copy db.local
+  tags: ns
   ansible.builtin.copy:
     src: db.local
     dest: /etc/bind/db.local
@@ -127,6 +143,7 @@
   notify: restart named
 
 - name: Copy db.192.168
+  tags: ns
   ansible.builtin.copy:
     src: db.192.168
     dest: /var/lib/bind/db.192.168
@@ -136,6 +153,7 @@
   notify: restart named
 
 - name: Copy db.home.lan
+  tags: ns
   ansible.builtin.copy:
     src: db.home.lan
     dest: /var/lib/bind/db.home.lan
@@ -145,6 +163,7 @@
   notify: restart named
 
 - name: Copy dhcpd.conf
+  tags: ns
   ansible.builtin.copy:
     src: dhcpd.conf
     dest: /etc/dhcp/dhcpd.conf
