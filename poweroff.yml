@@ -1,8 +1,5 @@
 ---
 - name: Poweroff
-
-- hosts:
-    - power
-  tags: power
+  hosts: power
   roles:
     - power
