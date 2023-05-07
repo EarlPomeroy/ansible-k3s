@@ -1,5 +1,0 @@
----
-- name: Poweroff
-  hosts: power
-  roles:
-    - power

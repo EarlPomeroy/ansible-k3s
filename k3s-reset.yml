@@ -1,0 +1,7 @@
+---
+- name: K3S reset tasks
+  hosts:
+    - k3s_server
+    - k3s_node
+  roles:
+    - k3s_reset

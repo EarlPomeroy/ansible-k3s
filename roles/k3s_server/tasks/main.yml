@@ -18,13 +18,13 @@
 - name: Init cluster inside the transient k3s-init service # noqa args
   tags: k3s_server
   ansible.builtin.command:
-    cmd: "systemd-run -p RestartSec=2 \
-      -p Restart=on-failure \
-      --unit=k3s-init \
-      k3s server {{ server_init_args }}"
+    argv:
+      - systemd-run
+      - -p RestartSec=2
+      - -p Restart=on-failure
+      - --unit=k3s-init
+      - -k3s server {{ server_init_args }}
     creates: "{{ systemd_dir }}/k3s.service"
-  args:
-    warn: false # The ansible systemd module does not support transient units
 
 - name: Verification
   tags: k3s_server

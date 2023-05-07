@@ -1,6 +1,0 @@
----
-nfs_shares:
-  pvc:
-    path: /opt/nfs/pvc
-    hosts: 192.168.42.0/24
-    options: rw,sync,no_subtree_check

@@ -1,4 +1,0 @@
----
-- name: Get the MAC address
-  ansible.builtin.debug:
-    msg: "{{ hostvars[inventory_hostname].ansible_default_ipv4['macaddress'] }}"

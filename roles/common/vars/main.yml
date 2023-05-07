@@ -1,5 +1,0 @@
----
-dns_server: 192.168.42.2
-router_address: 192.168.42.1
-domain_name: home.lan
-netmask: 255.255.252.0

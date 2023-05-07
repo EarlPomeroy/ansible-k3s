@@ -1,4 +1,0 @@
-{% for share in nfs_shares -%}
-# Share for {{ share }}
-{{ nfs_shares[share].path }} {{ nfs_shares[share].hosts }}({{ nfs_shares[share].options }})
-{% endfor %}

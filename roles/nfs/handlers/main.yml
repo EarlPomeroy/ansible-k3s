@@ -1,9 +1,0 @@
----
-- name: Export NFS mount points # noqa no-changed-when
-  ansible.builtin.command:
-    cmd: exportfs -av
-
-- name: Restart NFS Server
-  ansible.builtin.systemd:
-    name: nfs-kernel-server
-    state: restarted

@@ -1,5 +1,0 @@
----
-- name: Shutdown host # noqa no-changed-when
-  community.general.shutdown:
-    delay: 5
-  when: ansible_facts['os_family'] == "Debian"
