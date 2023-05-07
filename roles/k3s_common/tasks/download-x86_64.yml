@@ -37,7 +37,7 @@
     - ( ansible_facts.architecture is search("x86_64") and
       ansible_facts.userspace_bits == "64" )
 
-- name: Link k3s-{{ k3s_version }} to k3s
+- name: Link k3s to k3s-{{ k3s_version }}
   tags: k3s_common
   ansible.builtin.file:
     src: /usr/local/bin/k3s-{{ k3s_version }}

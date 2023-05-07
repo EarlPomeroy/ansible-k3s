@@ -1,4 +1,4 @@
-# Ansible automation for home lab
+# Ansible automation for home lab K3S setup
 
 This controls the server setup for host services:
 
